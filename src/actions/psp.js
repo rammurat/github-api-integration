@@ -53,7 +53,6 @@ export const fetchPosts = (query = 'javascript') => dispatch => {
         if (response.data && response.data.items) {
           dispatch(updatePSP(response.data))
         }
-        console.log(response);
       })
       .catch(function (error) {
 
