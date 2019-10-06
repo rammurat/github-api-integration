@@ -4,9 +4,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Route, Redirect } from 'react-router';
 
-// load app level css
-import './app.scss'
-
 // Load containers
 import PSP from './containers/psp/psp.js';
 import Contact from './containers/static/contact.js';

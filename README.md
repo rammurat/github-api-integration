@@ -14,4 +14,5 @@ A quick POC with Webpack, React  and Redux configuration for client side renderi
 * Run application - npm install
 * Run bundling alone - npm run webpack
 * Start application - npm start
+* Run unit test cases and snapshots - npm run test
 * Open application via `http://localhost:8080/`

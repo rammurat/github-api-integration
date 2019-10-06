@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/psp.js';
 import Pagination from './pagination'
+import styled from 'styled-components'
+
+// @ts-ignore
+const ProductListStyle = styled.div`
+  padding: 20px 0px;
+  border-bottom: 1px solid #ccc;
+`;
 
 class List extends Component {
   constructor(props) {
@@ -40,40 +47,42 @@ class List extends Component {
     const sortedList = this.getSortedData(this.props.order, this.props.posts)
 
     const postItems = sortedList && sortedList.map(post => (
-      <div className="product-list" key={post.id}>
-        <div className="row">
-          <div className="col-sm-12 col-md-4 col-lg-4">
-            <ul>
-              <li>Repo Name</li>
-              <li>Url</li>
-              <li>Language</li>
-              <li>No. of star gazers</li>
-              <li>User</li>
-              <li>Profile</li>
-            </ul>
+      <div key={post.id}>
+        <ProductListStyle>
+          <div className="row">
+            <div className="col-sm-12 col-md-4 col-lg-4">
+              <ul>
+                <li>Repo Name</li>
+                <li>Url</li>
+                <li>Language</li>
+                <li>No. of star gazers</li>
+                <li>User</li>
+                <li>Profile</li>
+              </ul>
+            </div>
+            <div className="col-sm-12 col-md-8 col-lg-8">
+              <ul>
+                <li>{post.name}</li>
+                <li>{post.url}</li>
+                <li>{post.language}</li>
+                <li>{post.stargazers_count}</li>
+                <li>{post.login}</li>
+                <li><a href={post.html_url}>{post.html_url}</a></li>
+              </ul>
+            </div>
           </div>
-          <div className="col-sm-12 col-md-8 col-lg-8">
-            <ul>
-              <li>{post.name}</li>
-              <li>{post.url}</li>
-              <li>{post.language}</li>
-              <li>{post.stargazers_count}</li>
-              <li>{post.login}</li>
-              <li><a href={post.html_url}>{post.html_url}</a></li>
-            </ul>
-          </div>
-        </div>
+        </ProductListStyle>
       </div>
     ));
 
     return (
       <div>
         <div className="row justify-content-end">
-          <div className="col-sm-12 col-md-4 col-lg-4">
+          <div className="col-sm-12 col-md-6 col-lg-6">
             {!!totalPosts &&
               < p > Total number of repositories<strong>{totalPosts}</strong></p>}
           </div>
-          <div className="col-sm-12 col-md-8 col-lg-8">
+          <div className="col-sm-12 col-md-6 col-lg-6">
             <Pagination paginator={this.props.pagination} />
           </div>
         </div>
