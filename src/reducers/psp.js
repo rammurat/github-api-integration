@@ -2,7 +2,7 @@ import { POST_LIST, POST_PAGINATION, INITIAL_CONFIG, SORT_TYPE, LANG_TYPE, POST_
 import config from '../app-config.js'
 
 // initial post state
-const initialState = {
+export const initialState = {
   repos: [],
   paginator: 0,
   initialConfig: {
@@ -30,6 +30,7 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
+  console.log('ACCC', action)
   switch (action.type) {
     case POST_LIST:
       return {

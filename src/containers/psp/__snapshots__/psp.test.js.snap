@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="sc-bwzfXH iwjKrt"
+  className="sc-htpNat dgTzMT"
 >
   <div
     className="container"
@@ -54,35 +54,39 @@ exports[`renders correctly 1`] = `
       <div
         className="col-sm-12 col-md-9 col-lg-9"
       >
-        <form
-          className="form-inline search-container"
-          onSubmit={[Function]}
+        <div
+          className="sc-bdVaJa fmcpco"
         >
-          <div
-            className="form-group mx-sm-3 mb-2"
+          <form
+            className="form-inline"
+            onSubmit={[Function]}
           >
-            <label
-              className="sr-only"
+            <div
+              className="form-group mx-sm-3 mb-2"
             >
-              Password
-            </label>
-            <input
-              className="form-control"
-              id="search"
-              name="search"
-              onChange={[Function]}
-              placeholder="JavaScript"
-              type="text"
-              value=""
-            />
-          </div>
-          <button
-            className="btn btn-primary mb-2"
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
+              <label
+                className="sr-only"
+              >
+                Password
+              </label>
+              <input
+                className="form-control"
+                id="search"
+                name="search"
+                onChange={[Function]}
+                placeholder="JavaScript"
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              className="btn btn-primary mb-2"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
         <div>
           <div
             className="row justify-content-end"
