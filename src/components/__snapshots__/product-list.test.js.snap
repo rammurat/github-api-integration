@@ -1,18 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div
-  className="container error"
->
-  <h1>
-    Page not found
-  </h1>
-  <p>
-    <a
-      href="/"
+<div>
+  <div
+    className="row justify-content-end"
+  >
+    <div
+      className="col-sm-12 col-md-4 col-lg-4"
+    />
+    <div
+      className="col-sm-12 col-md-8 col-lg-8"
     >
-      Try new search...
-    </a>
-  </p>
+      <nav
+        aria-label="Page navigation example"
+        className="product-pagination "
+      >
+        <ul
+          className="pagination"
+        >
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+              href="#"
+            >
+              Previous
+            </a>
+          </li>
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+              href="#"
+            >
+              1
+            </a>
+          </li>
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+              href="#"
+            >
+              2
+            </a>
+          </li>
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+              href="#"
+            >
+              3
+            </a>
+          </li>
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+              href="#"
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div
+    className="spinner-border"
+    role="status"
+  >
+    <span
+      className="sr-only"
+    >
+      Loading...
+    </span>
+  </div>
 </div>
 `;

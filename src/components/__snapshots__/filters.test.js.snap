@@ -1,18 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div
-  className="container error"
->
-  <h1>
-    Page not found
-  </h1>
-  <p>
-    <a
-      href="/"
+<div>
+  <form>
+    <h1>
+      Filters:
+    </h1>
+    <div
+      className="form-group"
     >
-      Try new search...
-    </a>
-  </p>
+      <label
+        htmlFor="language-type"
+      >
+        Language Type:
+      </label>
+      <select
+        className="form-control"
+        id="language-type"
+        name="language-type"
+        onChange={[Function]}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="sort-by"
+      >
+        Sort by stars:
+      </label>
+      <select
+        className="form-control"
+        id="sort-by"
+        name="sort-by"
+        onChange={[Function]}
+      />
+    </div>
+  </form>
 </div>
 `;

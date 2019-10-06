@@ -8,7 +8,9 @@ const store = {
     subscribe: () => { },
     dispatch: () => { },
     getState: () => ({
-        initialConfig: {}
+        posts: {
+            initialConfig: {}
+        }
     })
 }
 

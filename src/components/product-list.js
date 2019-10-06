@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/psp.js';
 import Pagination from './pagination'
 
-class Posts extends Component {
+class List extends Component {
   constructor(props) {
     super(props);
 
@@ -17,24 +17,27 @@ class Posts extends Component {
   }
 
   // sort data in asc/desc form
-  getSortedData(order) {
-    if (this.props.posts) {
+  getSortedData(order, posts) {
+    if (posts && posts.length) {
+      const _posts = posts.slice(0, this.props.pagination.perPage)
       if (order === 'asc') {
-        return this.props.posts.sort((a, b) => {
+        return _posts.sort((a, b) => {
           return a.stargazers_count - b.stargazers_count
         })
       } else {
-        return this.props.posts.sort((a, b) => {
+        return _posts.sort((a, b) => {
           return b.stargazers_count - a.stargazers_count
         })
       }
     }
+
+
   }
 
   render() {
     // count total number of repos
     const totalPosts = this.props.paginator
-    const sortedList = this.getSortedData(this.props.order).slice(0, this.props.perPage) || []
+    const sortedList = this.getSortedData(this.props.order, this.props.posts)
 
     const postItems = sortedList && sortedList.map(post => (
       <div className="product-list" key={post.id}>
@@ -71,14 +74,14 @@ class Posts extends Component {
               < p > Total number of repositories<strong>{totalPosts}</strong></p>}
           </div>
           <div className="col-sm-12 col-md-8 col-lg-8">
-            <Pagination paginator={totalPosts} />
+            <Pagination paginator={this.props.pagination} />
           </div>
         </div>
 
         {this.props.isNoResult && <p className="alert alert-danger" role="alert">{this.props.errMsg}</p>}
 
         {/** Load PSP items */}
-        {postItems.length ? postItems : <div className="spinner-border" role="status">
+        {postItems && postItems.length ? postItems : <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>
         </div>}
       </div >
@@ -86,11 +89,11 @@ class Posts extends Component {
   }
 }
 
-Posts.propTypes = {
+List.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
   posts: PropTypes.array,
   order: PropTypes.string,
-  perPage: PropTypes.number,
+  pagination: PropTypes.object,
   errMsg: PropTypes.string,
   isNoResult: PropTypes.bool
 };
@@ -101,10 +104,10 @@ const mapStateToProps = state => ({
   posts: state.posts.repos,
   paginator: state.posts.paginator,
   order: state.posts.selectedOrder,
-  perPage: state.posts.initialConfig.pagination.perPage
+  pagination: state.posts.initialConfig.pagination
 });
 
 export default connect(
   mapStateToProps,
   { fetchPosts }
-)(Posts);
+)(List);

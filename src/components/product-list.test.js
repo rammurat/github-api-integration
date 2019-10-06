@@ -1,30 +1,29 @@
 import React from 'react'
 import renderer from 'react-test-renderer';
-import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
 
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({ adapter: new Adapter() });
-
-import Error from './error'
+import List from './product-list'
 
 const store = {
     subscribe: () => { },
     dispatch: () => { },
-    getState: () => ({})
+    getState: () => ({
+        posts: {
+            initialConfig: {
+                pagination: {
+                    perPage: 0
+                }
+            }
+        }
+    })
 }
 
-const props = {
-    labels: {
-        a: 'b'
-    }
-}
-
+// @ts-ignore
 it('renders correctly', () => {
     const tree = renderer
-        .create(<Error />)
+        // @ts-ignore
+        .create(<Provider store={store}><List /></Provider>)
         .toJSON();
+    // @ts-ignore
     expect(tree).toMatchSnapshot();
 });
