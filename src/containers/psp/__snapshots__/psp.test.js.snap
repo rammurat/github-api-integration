@@ -89,7 +89,9 @@ exports[`renders correctly 1`] = `
             </button>
           </form>
         </div>
-        <div>
+        <div
+          className="product-list"
+        >
           <div
             className="row justify-content-end"
           >

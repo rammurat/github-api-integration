@@ -76,7 +76,7 @@ class List extends Component {
     ));
 
     return (
-      <div>
+      <div className='product-list'>
         <div className="row justify-content-end">
           <div className="col-sm-12 col-md-6 col-lg-6">
             {!!totalPosts &&
