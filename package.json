@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "webpack": "webpack",
-    "test": "./node_modules/.bin/jest --env=jsdom"
+    "test": "./node_modules/.bin/jest --env=jsdom",
+    "test:update": "npm test -- -u",
+    "test:coverage": "jest --collect-coverage"
   },
   "jest": {
     "testEnvironment": "node"

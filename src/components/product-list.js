@@ -90,7 +90,9 @@ class List extends Component {
         {this.props.isNoResult && <p className="alert alert-danger" role="alert">{this.props.errMsg}</p>}
 
         {/** Load PSP items */}
-        {postItems && postItems.length ? postItems : <div className="spinner-border" role="status">
+        {postItems && postItems.length && postItems}
+        {this.props.isLoading &&
+        <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>
         </div>}
       </div >
@@ -104,7 +106,8 @@ List.propTypes = {
   order: PropTypes.string,
   pagination: PropTypes.object,
   errMsg: PropTypes.string,
-  isNoResult: PropTypes.bool
+  isNoResult: PropTypes.bool,
+  isLoading: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
@@ -113,7 +116,8 @@ const mapStateToProps = state => ({
   posts: state.posts.repos,
   paginator: state.posts.paginator,
   order: state.posts.selectedOrder,
-  pagination: state.posts.initialConfig.pagination
+  pagination: state.posts.initialConfig.pagination,
+  isLoading: state.posts.isLoading
 });
 
 export default connect(

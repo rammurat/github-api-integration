@@ -1,4 +1,4 @@
-import { POST_LIST, POST_PAGINATION, INITIAL_CONFIG, SORT_TYPE, LANG_TYPE, POST_ERROR, IS_NO_ITEMS } from '../actions/types.js';
+import { POST_LIST, POST_PAGINATION, INITIAL_CONFIG, SORT_TYPE, LANG_TYPE, POST_ERROR, IS_NO_ITEMS, IS_LOADING } from '../actions/types.js';
 import config from '../app-config.js'
 
 // initial post state
@@ -26,11 +26,11 @@ export const initialState = {
   selectedOrder: 'asc',
   selectedLangType: 'javascript',
   isNoResult: false,
-  errMsg: ''
+  errMsg: '',
+  isLoading: false
 };
 
-export default function (state = initialState, action) {
-  console.log('ACCC', action)
+export default (state = initialState, action) => {
   switch (action.type) {
     case POST_LIST:
       return {
@@ -72,6 +72,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isNoResult: action.payload
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload
       };
 
     default:

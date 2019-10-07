@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux'
@@ -12,18 +13,16 @@ const store = {
             initialConfig: {
                 pagination: {
                     perPage: 0
-                }
+                },
+                isLoading: false
             }
         }
     })
 }
 
-// @ts-ignore
 it('renders correctly', () => {
     const tree = renderer
-        // @ts-ignore
         .create(<Provider store={store}><List /></Provider>)
         .toJSON();
-    // @ts-ignore
     expect(tree).toMatchSnapshot();
 });

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux'
@@ -9,12 +10,10 @@ const store = {
     dispatch: () => { },
     getState: () => ({})
 }
-// @ts-ignore
+
 it('renders correctly', () => {
     const tree = renderer
-        // @ts-ignore
         .create(<Provider store={store}><Search /></Provider>)
         .toJSON();
-    // @ts-ignore
     expect(tree).toMatchSnapshot();
 });

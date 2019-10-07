@@ -1,8 +1,14 @@
+// @ts-nocheck
 import React from 'react'
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux'
-
 import Filters from './filters'
+
+import { shallow } from 'enzyme';
+
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 const store = {
     subscribe: () => { },
@@ -14,12 +20,10 @@ const store = {
     })
 }
 
-// @ts-ignore
 it('renders correctly', () => {
     const tree = renderer
-        // @ts-ignore
         .create(<Provider store={store}><Filters /></Provider>)
         .toJSON();
-    // @ts-ignore
     expect(tree).toMatchSnapshot();
 });
+

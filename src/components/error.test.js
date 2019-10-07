@@ -1,13 +1,16 @@
+// @ts-nocheck
 import React from 'react'
 import renderer from 'react-test-renderer';
-
+import { shallow } from 'enzyme';
 import Error from './error'
 
-// @ts-ignore
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 it('renders correctly', () => {
     const tree = renderer
         .create(<Error />)
         .toJSON();
-    // @ts-ignore
     expect(tree).toMatchSnapshot();
 });

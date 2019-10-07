@@ -1,6 +1,6 @@
-import { POST_LIST, POST_PAGINATION, SORT_TYPE, LANG_TYPE, POST_ERROR, IS_NO_ITEMS } from './types.js';
+import { POST_LIST, POST_PAGINATION, SORT_TYPE, LANG_TYPE, POST_ERROR, IS_NO_ITEMS, IS_LOADING } from './types.js';
 import config from '../app-config'
-axios.defaults.baseURL = 'https://api.github.com';
+axios.defaults.baseURL = config.baseUrl;
 import axios from 'axios'
 
 // reset PSP data on filter change and initial load
@@ -15,7 +15,7 @@ export const updatePSP = (data) => dispatch => {
   })
 
   const _items = _data && !_data.length
-  const _error = _items ? 'There are no items to be shown.' : ''
+  const _error = _items ? config.errorMsgs.noList : ''
 
   dispatch({
     type: POST_LIST,
@@ -37,10 +37,37 @@ export const updatePSP = (data) => dispatch => {
   })
 };
 
+const clearPosts = () => dispatch => {
+  dispatch({
+    type: POST_LIST,
+    payload: []
+  })
+  dispatch({
+    type: POST_PAGINATION,
+    payload: 0
+  })
+}
+
 // fetch latest posts based on last filter action/default configuration
 export const fetchPosts = (query = 'javascript') => dispatch => {
+  
+  // check for last client call, if it is same return without doing anything
+  const currentCall = `${config.appUrls.search}${query}`
+  // @ts-ignore
+  if(window && window.lastAjaxCall === currentCall) {
+    return true;
+  }
 
+  // clear previous list before any call
+  dispatch(clearPosts())
+  
   try {
+    dispatch({
+      type: IS_LOADING,
+      payload: true
+    })
+    // @ts-ignore
+    window.lastAjaxCall = currentCall
     axios.get(config.appUrls.search, {
       params: {
         q: query,
@@ -53,6 +80,12 @@ export const fetchPosts = (query = 'javascript') => dispatch => {
         if (response.data && response.data.items) {
           dispatch(updatePSP(response.data))
         }
+      })
+      .finally(()=>{
+        dispatch({
+          type: IS_LOADING,
+          payload: false
+        })
       })
       .catch(function (error) {
 

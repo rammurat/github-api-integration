@@ -27,7 +27,7 @@ class Filters extends Component {
 
     return (
       <div>
-        <form>
+        <form className='filter-form'>
           <h1>Filters:</h1>
           <div className="form-group">
             <label htmlFor="language-type">Language Type:</label>
